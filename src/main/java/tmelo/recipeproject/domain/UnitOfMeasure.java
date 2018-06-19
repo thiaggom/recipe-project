@@ -14,7 +14,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-@Table(name="TB_UNITMESURES")
+@Table(name="TB_UNITMEASURES")
 public class UnitOfMeasure {
 
 	@Id

@@ -1,0 +1,12 @@
+create table tb_categories (id bigint not null auto_increment, category_name varchar(255), primary key (id)) engine=InnoDB;
+create table tb_ingredients (id bigint not null auto_increment, amount decimal(19,2), description varchar(255), recipe_id bigint, uom_id bigint, primary key (id)) engine=InnoDB;
+create table tb_notes (id bigint not null auto_increment, recipe_notes longtext, recipe_id bigint, primary key (id)) engine=InnoDB;
+create table tb_recipe_category (recipe_id bigint not null, category_id bigint not null, primary key (recipe_id, category_id)) engine=InnoDB;
+create table tb_recipes (id bigint not null auto_increment, cook_time integer, creation_time datetime, description varchar(255), difficulty varchar(255), directions longtext, image longblob, las_update datetime, prep_time integer, servings integer, source varchar(255), url varchar(255), notes_id bigint, primary key (id)) engine=InnoDB;
+create table tb_unitmeasures (id bigint not null auto_increment, description varchar(255), primary key (id)) engine=InnoDB;
+alter table tb_ingredients add constraint FK9wjiq63508qs6xiht0wvjoaf6 foreign key (recipe_id) references tb_recipes (id);
+alter table tb_ingredients add constraint FKrf14evhmqien0pq1fgo7006uj foreign key (uom_id) references tb_unitmeasures (id);
+alter table tb_notes add constraint FKaavngn00fplkqxfsv02wkexhu foreign key (recipe_id) references tb_recipes (id);
+alter table tb_recipe_category add constraint FKr3f2gy6sfsttwfie4k0qgt6y3 foreign key (category_id) references tb_categories (id);
+alter table tb_recipe_category add constraint FKpbwevr9shq38f726jhv6ayigi foreign key (recipe_id) references tb_recipes (id);
+alter table tb_recipes add constraint FKar6abmvjpgq0erpfx6p9sgiyh foreign key (notes_id) references tb_notes (id);

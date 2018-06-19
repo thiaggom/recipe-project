@@ -1,0 +1,12 @@
+INSERT INTO tb_categories (CATEGORY_NAME) VALUES ('American');
+INSERT INTO tb_categories (CATEGORY_NAME) VALUES ('Italian');
+INSERT INTO tb_categories (CATEGORY_NAME) VALUES ('Mexican');
+INSERT INTO tb_categories (CATEGORY_NAME) VALUES ('Fast Food');
+INSERT INTO tb_unitmeasures (description) VALUES ('Teaspoon');
+INSERT INTO tb_unitmeasures (description) VALUES ('Tablespoon');
+INSERT INTO tb_unitmeasures (description) VALUES ('Cup');
+INSERT INTO tb_unitmeasures (description) VALUES ('Pinch');
+INSERT INTO tb_unitmeasures (description) VALUES ('Ounce');
+INSERT INTO tb_unitmeasures (description) VALUES ('Each');
+INSERT INTO tb_unitmeasures (description) VALUES ('Dash');
+INSERT INTO tb_unitmeasures (description) VALUES ('Pint');

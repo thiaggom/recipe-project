@@ -1,0 +1,16 @@
+logging:
+  level: 
+    tmelo.recipeproject: INFO
+spring:
+  datasource:
+    url: jdbc:mysql://dockerserver-lb-485393680.us-east-1.elb.amazonaws.com:3306/sfg_prod
+    username: root
+    password: mysqladmin1
+    platform: mysql
+    
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: mysql
+    show-sql: false
