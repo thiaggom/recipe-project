@@ -11,13 +11,13 @@ public interface RecipeService {
 	
 	public void saveRecipe(Recipe recipe);
 
-	public Recipe getRecipeById(Long id);
+	public Recipe getRecipeById(String id);
 
-	public void deleteRecipeById(Long id);
+	public void deleteRecipeById(String id);
 	
 	public RecipeCommand saveRecipeCommand(RecipeCommand recipeCommand);
 
-	public RecipeCommand findCommandById(Long id);
+	public RecipeCommand findCommandById(String id);
 	
 	
 }

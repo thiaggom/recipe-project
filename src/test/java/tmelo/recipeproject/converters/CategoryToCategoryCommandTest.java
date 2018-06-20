@@ -12,7 +12,7 @@ import tmelo.recipeproject.domain.Category;
 
 public class CategoryToCategoryCommandTest {
 
-	private final Long ID = 1L;
+	private final String ID = "1";
 	private final String CATEGORY_NAME = "category";
 	
 	private CategoryToCategoryCommand converter;

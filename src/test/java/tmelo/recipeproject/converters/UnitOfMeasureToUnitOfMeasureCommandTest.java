@@ -12,7 +12,7 @@ import tmelo.recipeproject.domain.UnitOfMeasure;
 
 public class UnitOfMeasureToUnitOfMeasureCommandTest {
 
-	private static final Long LONG_VALUE = 1L;
+	private static final String LONG_VALUE = "1";
 	private static final String DESCRIPTION = "description";
 
 	private static UnitOfMeasureToUnitOfMeasureCommand converter;

@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import tmelo.recipeproject.domain.Recipe;
 
-public interface RecipeRepository extends CrudRepository<Recipe, Long>{
+public interface RecipeRepository extends CrudRepository<Recipe, String>{
 
 }

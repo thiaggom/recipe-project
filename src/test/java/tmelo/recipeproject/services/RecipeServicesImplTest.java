@@ -3,7 +3,7 @@ package tmelo.recipeproject.services;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -50,26 +50,26 @@ public class RecipeServicesImplTest {
 		
 		Optional<Recipe> returned = Optional.empty();
 		
-		when(recipeRepo.findById(anyLong())).thenReturn(returned);
+		when(recipeRepo.findById(anyString())).thenReturn(returned);
 		
-		recipeService.getRecipeById(1L);
+		recipeService.getRecipeById("1");
 		
-		verify(recipeRepo, times(1)).findById(anyLong());
+		verify(recipeRepo, times(1)).findById(anyString());
 		
 	}
 	
 	@Test
 	public void getRecipeByIdTest() throws Exception {
 		Recipe rec = new Recipe();
-		rec.setId(1L);
+		rec.setId("1");
 		Optional<Recipe> optRec = Optional.of(rec);
 		
-		when(recipeRepo.findById(anyLong())).thenReturn(optRec);
+		when(recipeRepo.findById(anyString())).thenReturn(optRec);
 		
-		Recipe returnedRecipe = recipeService.getRecipeById(1L);
+		Recipe returnedRecipe = recipeService.getRecipeById("1");
 		
 		assertNotNull("Null recipe returned", returnedRecipe);
-		verify(recipeRepo, times(1)).findById(anyLong());
+		verify(recipeRepo, times(1)).findById(anyString());
 		verify(recipeRepo, never()).findAll();
 	}
 	
@@ -87,15 +87,15 @@ public class RecipeServicesImplTest {
 		
 		// verifing if the RecipeRepository was called only once...
 		verify(recipeRepo, times(1)).findAll();
-		verify(recipeRepo, never()).findById(anyLong());
+		verify(recipeRepo, never()).findById(anyString());
 	}
 
 	@Test
 	public void testDeleteRecipeById() throws Exception {
 		
-		recipeService.deleteRecipeById(1L);
+		recipeService.deleteRecipeById("1");
 		
-		verify(recipeRepo, times(1)).deleteById(anyLong());
+		verify(recipeRepo, times(1)).deleteById(anyString());
 		
 	}
 	
@@ -103,7 +103,7 @@ public class RecipeServicesImplTest {
 	public void findCommandByIdTest() throws Exception {
 		
 		// mock the repository result
-		Long lID = 1L;
+		String lID = "1";
 		String sDescription = "description";
 		Recipe recipe = new Recipe();
 		recipe.setId(lID);
@@ -111,7 +111,7 @@ public class RecipeServicesImplTest {
 		
 		Optional<Recipe> optRecipe = Optional.of(recipe);
 		
-		when(recipeRepo.findById(anyLong())).thenReturn(optRecipe);
+		when(recipeRepo.findById(anyString())).thenReturn(optRecipe);
 		
 		RecipeCommand command = new RecipeCommand();
 		command.setId(lID);
@@ -122,7 +122,7 @@ public class RecipeServicesImplTest {
 		assertNotNull(returnedCommand);
 		assertEquals(lID, returnedCommand.getId());
 		assertEquals(sDescription, returnedCommand.getDescription());
-		verify(recipeRepo, times(1)).findById(anyLong());
+		verify(recipeRepo, times(1)).findById(anyString());
 		verify(recipeRepo, never()).findAll();
 	}
 }

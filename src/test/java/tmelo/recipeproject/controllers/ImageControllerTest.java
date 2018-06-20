@@ -52,16 +52,16 @@ public class ImageControllerTest {
 	public void getRecipeImageTest() throws Exception {
 		
 		RecipeCommand command = new RecipeCommand();
-		command.setId(1L);
+		command.setId("1");
 		
-		when(recipeService.findCommandById(anyLong())).thenReturn(command);
+		when(recipeService.findCommandById(anyString())).thenReturn(command);
 		
 		mock.perform(get("/recipe/1/image"))
 			.andExpect(status().isOk())
 			.andExpect(view().name("recipe/imageuploadform"))
 			.andExpect(model().attributeExists("recipe"));
 		
-		verify(recipeService,times(1)).findCommandById(anyLong());
+		verify(recipeService,times(1)).findCommandById(anyString());
 	}
 	
 	@Test
@@ -77,7 +77,7 @@ public class ImageControllerTest {
 	@Test
 	public void getRecipeImageNotFoundTest() throws Exception {
 		
-		when(recipeService.findCommandById(anyLong())).thenThrow(NotFoundException.class);
+		when(recipeService.findCommandById(anyString())).thenThrow(NotFoundException.class);
 		
 		mock.perform(get("/recipe/1/image"))
 		.andExpect(status().isNotFound())
@@ -94,7 +94,7 @@ public class ImageControllerTest {
     		.andExpect(status().is3xxRedirection())
     		.andExpect(header().string(HttpHeaders.LOCATION, "/recipe/1/show"));
     	
-    	verify(imageService, times(1)).saveImageFile(anyLong(), any());
+    	verify(imageService, times(1)).saveImageFile(anyString(), any());
 
     	
     }
@@ -104,7 +104,7 @@ public class ImageControllerTest {
 
         //given
         RecipeCommand command = new RecipeCommand();
-        command.setId(1L);
+        command.setId("1");
 
         String s = "fake image text";
         Byte[] bytesBoxed = new Byte[s.getBytes().length];
@@ -117,7 +117,7 @@ public class ImageControllerTest {
 
         command.setImage(bytesBoxed);
 
-        when(recipeService.findCommandById(anyLong())).thenReturn(command);
+        when(recipeService.findCommandById(anyString())).thenReturn(command);
 
         //when
         MockHttpServletResponse response = mock.perform(get("/recipe/1/recipeimage"))

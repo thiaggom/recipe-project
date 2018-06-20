@@ -13,7 +13,8 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class CategoryCommand {
-	private Long id;
+	
+	private String id;
 	
 	@NotBlank
 	@Size(min=3, max=255)

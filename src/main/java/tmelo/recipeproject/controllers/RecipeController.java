@@ -31,15 +31,14 @@ public class RecipeController {
 	@GetMapping("/recipe/{id}/show")
 	public String getRecipeById(@PathVariable String id, Model model) {
 		
-		Long pId = null;
 		
 		try {
-			pId = Long.valueOf(id);
+			Long.valueOf(id);
 		} catch (NumberFormatException e) {
 			throw new InvalidParametersException("Invalid Recipe Id: "+id);
 		}
 		
-		Recipe rec = recipeService.getRecipeById(pId); 
+		Recipe rec = recipeService.getRecipeById(id); 
 		
 		model.addAttribute("recipe",rec);
 		
@@ -57,7 +56,7 @@ public class RecipeController {
 	
 	@GetMapping("/recipe/{id}/update")
 	public String updateRecipe(@PathVariable String id, Model model) {
-		model.addAttribute("recipe", recipeService.findCommandById(Long.parseLong(id)));
+		model.addAttribute("recipe", recipeService.findCommandById(id));
 		return RECIPE_RECIPEFORM_URL;
 	}
 	
@@ -81,7 +80,7 @@ public class RecipeController {
 	public String deleteRecipe(@PathVariable String id, Model model) {
 		log.debug("## Deleting recipe: "+id);
 		
-		recipeService.deleteRecipeById(Long.valueOf(id));
+		recipeService.deleteRecipeById(id);
 		
 		return "redirect:/";
 	}

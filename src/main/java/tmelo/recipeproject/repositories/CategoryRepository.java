@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import tmelo.recipeproject.domain.Category;
 
-public interface CategoryRepository extends CrudRepository<Category, Long>{
+public interface CategoryRepository extends CrudRepository<Category, String>{
 
 	public Optional<Category> findByCategoryName(String categoryName);
 	

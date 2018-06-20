@@ -12,7 +12,7 @@ import tmelo.recipeproject.domain.Notes;
 
 public class NotesCommandToNotesTest {
 
-	private static final Long ID = 1L;
+	private static final String ID = "1";
 	private static final String RECIPE_NOTES = "recipe notes";
 
 	private NotesCommandToNotes converter;

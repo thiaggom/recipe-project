@@ -1,7 +1,7 @@
 package tmelo.recipeproject.services;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -37,24 +37,24 @@ public class ImageServiceImplTest {
 	public void recipeNotFoundTest() throws Exception {
 		Optional<Recipe> optRecipe = Optional.empty();
 		
-		when(recipeRepo.findById(anyLong())).thenReturn(optRecipe);
+		when(recipeRepo.findById(anyString())).thenReturn(optRecipe);
 		
-		imageService.saveImageFile(anyLong(), null);
+		imageService.saveImageFile(anyString(), null);
 	}
 	
 	@Test
 	public void saveRecipeImageTest() throws Exception {
 		
 		Recipe recipe = new Recipe();
-		recipe.setId(1L);
+		recipe.setId("1");
 		
 		Optional<Recipe> optRecipe = Optional.of(recipe);
 		
-		when(recipeRepo.findById(anyLong())).thenReturn(optRecipe);
+		when(recipeRepo.findById(anyString())).thenReturn(optRecipe);
 		
 		MultipartFile file = new MockMultipartFile("imagefile","test.txt","text/plain", "test of save".getBytes());
 		
-		imageService.saveImageFile(anyLong(), file);
+		imageService.saveImageFile(anyString(), file);
 		
 		ArgumentCaptor<Recipe> captor = ArgumentCaptor.forClass(Recipe.class);
 		

@@ -2,7 +2,7 @@ package tmelo.recipeproject.controllers;
 
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -47,9 +47,9 @@ public class RecipeControllerTest {
 	public void getRecipeByIdTest() throws Exception {
 
 		Recipe rec = new Recipe();
-		rec.setId(1L);
+		rec.setId("1");
 
-		when(recipeService.getRecipeById(anyLong())).thenReturn(rec);
+		when(recipeService.getRecipeById(anyString())).thenReturn(rec);
 
 		mock.perform(get("/recipe/1/show")).andExpect(status().isOk()).andExpect(view().name("recipe/show"))
 				.andExpect(model().attributeExists("recipe"));
@@ -59,7 +59,7 @@ public class RecipeControllerTest {
 	@Test
 	public void getRecipeByIdTestNotFound() throws Exception {
 
-		when(recipeService.getRecipeById(anyLong())).thenThrow(NotFoundException.class);
+		when(recipeService.getRecipeById(anyString())).thenThrow(NotFoundException.class);
 
 		mock.perform(get("/recipe/1/show")).andExpect(status().isNotFound()).andExpect(view().name("404error"));
 
@@ -67,7 +67,7 @@ public class RecipeControllerTest {
 
 	@Test
 	public void getRecipeByIdTestBadRequest() throws Exception {
-		when(recipeService.getRecipeById(anyLong())).thenThrow(InvalidParametersException.class);
+		when(recipeService.getRecipeById(anyString())).thenThrow(InvalidParametersException.class);
 
 		mock.perform(get("/recipe/1/show")).andExpect(status().isBadRequest()).andExpect(view().name("400error"));
 
@@ -81,11 +81,11 @@ public class RecipeControllerTest {
 
 	@Test
 	public void testGetUpdateView() throws Exception {
-		Long lID = 1L;
+		String lID = "1";
 		RecipeCommand command = new RecipeCommand();
 		command.setId(lID);
 
-		when(recipeService.findCommandById(anyLong())).thenReturn(command);
+		when(recipeService.findCommandById(anyString())).thenReturn(command);
 
 		this.mock.perform(get("/recipe/1/update")).andExpect(status().isOk())
 				.andExpect(model().attributeExists("recipe")).andExpect(view().name("recipe/recipeform"));
@@ -96,7 +96,7 @@ public class RecipeControllerTest {
 
 		RecipeCommand command = new RecipeCommand();
 
-		Long lID = 1L;
+		String lID = "1";
 		String sDescription = "description";
 
 		command.setId(lID);
@@ -116,7 +116,7 @@ public class RecipeControllerTest {
 	@Test
 	public void testPostNewRecipeFormValidationFail() throws Exception {
 		RecipeCommand command = new RecipeCommand();
-		command.setId(2L);
+		command.setId("2");
 
 		when(recipeService.saveRecipeCommand(any())).thenReturn(command);
 
@@ -133,7 +133,7 @@ public class RecipeControllerTest {
 		mock.perform(get("/recipe/1/delete")).andExpect(status().is3xxRedirection())
 				.andExpect(view().name("redirect:/"));
 
-		verify(recipeService, times(1)).deleteRecipeById(anyLong());
+		verify(recipeService, times(1)).deleteRecipeById(anyString());
 
 	}
 
