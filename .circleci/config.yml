@@ -48,14 +48,14 @@ jobs:
           command: |
             mkdir -p ~/junit/
             find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/junit/ \;
-            when: always
+          when: always
 
       - store_test_results:
           path: ~/junit
 
       - store_artifacts:
           path: ~/junit
-
+    
       # token codecov: 8aebf8ef-5545-4ca7-ab45-528e6e8927ab
       - run:
           name: Send to CodeCov
