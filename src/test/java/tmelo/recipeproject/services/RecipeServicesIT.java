@@ -3,12 +3,10 @@ package tmelo.recipeproject.services;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import tmelo.recipeproject.commands.RecipeCommand;
 import tmelo.recipeproject.converters.RecipeCommandToRecipe;
@@ -16,8 +14,8 @@ import tmelo.recipeproject.converters.RecipeToRecipeCommand;
 import tmelo.recipeproject.domain.Recipe;
 import tmelo.recipeproject.repositories.RecipeRepository;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
 public class RecipeServicesIT {
 
 	private final String RECIPE_DESCRIPTION = "new description";
@@ -34,8 +32,8 @@ public class RecipeServicesIT {
 	@Autowired
 	RecipeToRecipeCommand recipeToRecipeCommand;
 	
-	@Transactional
-	@Test
+//	@Transactional
+//	@Test
 	public void testSavedDescription() throws Exception {
 		
 		Recipe originRecipe = recipeRepository.findAll().iterator().next();
