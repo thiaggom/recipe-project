@@ -23,13 +23,13 @@ import tmelo.recipeproject.repositories.UnitOfMeasureRepository;
 @Slf4j
 @Component
 @Profile("default")
-public class H2DataPush implements ApplicationListener<ContextRefreshedEvent>{
+public class MongoDataPush implements ApplicationListener<ContextRefreshedEvent>{
 
 	private RecipeRepository recipeRepo;
 	private CategoryRepository categoryRepo;
 	private UnitOfMeasureRepository unitMesureRepo;
 
-	public H2DataPush(RecipeRepository recipeRepo, CategoryRepository categoryRepo,
+	public MongoDataPush(RecipeRepository recipeRepo, CategoryRepository categoryRepo,
 			UnitOfMeasureRepository unitMesureRepo) {
 		this.recipeRepo = recipeRepo;
 		this.categoryRepo = categoryRepo;
@@ -41,6 +41,12 @@ public class H2DataPush implements ApplicationListener<ContextRefreshedEvent>{
 		
 		// populating database...
 		log.debug("## Pushing data to H2 database...");
+		
+		log.debug("## loading Categories...");
+		loadCategories();
+		
+		log.debug("## loading Unit of Measures...");
+		loadUom();
 		
 		// carregando Unidade de Medidas
 		
@@ -162,7 +168,7 @@ public class H2DataPush implements ApplicationListener<ContextRefreshedEvent>{
                 "\n" +
                 "Read more: http://www.simplyrecipes.com/recipes/perfect_guacamole/#ixzz4jvoun5ws");
         
-        guacamole.addNotes(guacNotes);
+        guacamole.setNotes(guacNotes);
         
         guacamole.addIngredient(new Ingredient("ripe avocados", new BigDecimal(2), uomOunce));
         guacamole.addIngredient(new Ingredient("Kosher salt", new BigDecimal(".5"), uomTeaspoon));
@@ -216,7 +222,7 @@ public class H2DataPush implements ApplicationListener<ContextRefreshedEvent>{
                 "\n" +
                 "Read more: http://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/#ixzz4jvu7Q0MJ");
 
-        tacos.addNotes(tacoNotes);
+        tacos.setNotes(tacoNotes);
         
         tacos.setIngredients(new HashSet<>());
         tacos.addIngredient(new Ingredient("Ancho Chili Powder", new BigDecimal(2),uomTablespoon));
@@ -252,6 +258,60 @@ public class H2DataPush implements ApplicationListener<ContextRefreshedEvent>{
         log.debug("## Data loaded successfully!!");
 	}
 	
+	public void loadCategories() {
+
+		Category cat1 = new Category();
+		cat1.setCategoryName("American");
+		categoryRepo.save(cat1);
+		
+		Category cat2 = new Category();
+		cat2.setCategoryName("Italian");
+		categoryRepo.save(cat2);
+		
+		Category cat3 = new Category();
+		cat3.setCategoryName("Mexican");
+		categoryRepo.save(cat3);
+		
+		Category cat4 = new Category();
+		cat4.setCategoryName("Fast Food");
+		categoryRepo.save(cat4);
+		
+	}
 	
+	public void loadUom() {
+		
+		UnitOfMeasure uom1 = new UnitOfMeasure();
+		uom1.setDescription("Teaspoon");
+		unitMesureRepo.save(uom1);
+		
+		UnitOfMeasure uom2 = new UnitOfMeasure();
+		uom2.setDescription("Tablespoon");
+		unitMesureRepo.save(uom2);
+		
+		UnitOfMeasure uom3 = new UnitOfMeasure();
+		uom3.setDescription("Cup");
+		unitMesureRepo.save(uom3);
+		
+		UnitOfMeasure uom4 = new UnitOfMeasure();
+		uom4.setDescription("Pinch");
+		unitMesureRepo.save(uom4);
+		
+		UnitOfMeasure uom5 = new UnitOfMeasure();
+		uom5.setDescription("Ounce");
+		unitMesureRepo.save(uom5);
+		
+		UnitOfMeasure uom6 = new UnitOfMeasure();
+		uom6.setDescription("Each");
+		unitMesureRepo.save(uom6);
+		
+		UnitOfMeasure uom7 = new UnitOfMeasure();
+		uom7.setDescription("Dash");
+		unitMesureRepo.save(uom7);
+		
+		UnitOfMeasure uom8 = new UnitOfMeasure();
+		uom8.setDescription("Pint");
+		unitMesureRepo.save(uom8);
+		
+	}
 	
 }

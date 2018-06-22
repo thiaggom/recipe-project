@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import lombok.extern.slf4j.Slf4j;
 import tmelo.recipeproject.commands.RecipeCommand;
 import tmelo.recipeproject.domain.Recipe;
-import tmelo.recipeproject.exceptions.InvalidParametersException;
 import tmelo.recipeproject.services.RecipeService;
 
 @Slf4j
@@ -30,13 +29,6 @@ public class RecipeController {
 	
 	@GetMapping("/recipe/{id}/show")
 	public String getRecipeById(@PathVariable String id, Model model) {
-		
-		
-		try {
-			Long.valueOf(id);
-		} catch (NumberFormatException e) {
-			throw new InvalidParametersException("Invalid Recipe Id: "+id);
-		}
 		
 		Recipe rec = recipeService.getRecipeById(id); 
 		
