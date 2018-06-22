@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import lombok.extern.slf4j.Slf4j;
 import tmelo.recipeproject.commands.IngredientCommand;
+import tmelo.recipeproject.commands.RecipeCommand;
 import tmelo.recipeproject.commands.UnitOfMeasureCommand;
+import tmelo.recipeproject.exceptions.InvalidParametersException;
 import tmelo.recipeproject.services.IngredientService;
 import tmelo.recipeproject.services.RecipeService;
 import tmelo.recipeproject.services.UnitOfMeasureService;
@@ -69,8 +71,11 @@ public class IngredientsController {
     public String newIngredient(@PathVariable String recipeId, Model model){
 
         //make sure we have a good id value
-//        RecipeCommand recipeCommand = recipeService.findCommandById(recipeId);
-        //todo raise exception if null
+        RecipeCommand recipeCommand = recipeService.findCommandById(recipeId);
+        //raise exception if null
+        if (recipeCommand == null) {
+        	throw new InvalidParametersException("The recipe id informed "+ recipeId+", was not found!");
+        }
 
         //need to return back parent id for hidden form property
         IngredientCommand ingredientCommand = new IngredientCommand();

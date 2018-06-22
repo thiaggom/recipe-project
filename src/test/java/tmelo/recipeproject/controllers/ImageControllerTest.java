@@ -64,16 +64,6 @@ public class ImageControllerTest {
 		verify(recipeService,times(1)).findCommandById(anyString());
 	}
 	
-//	@Test
-	public void getRecipeImageBadRequestTest() throws Exception {
-		
-		mock.perform(get("/recipe/aa/image"))
-		.andExpect(status().isBadRequest())
-		.andExpect(model().attributeExists("exception"))
-		.andExpect(view().name("400error"));
-		
-	}
-	
 	@Test
 	public void getRecipeImageNotFoundTest() throws Exception {
 		

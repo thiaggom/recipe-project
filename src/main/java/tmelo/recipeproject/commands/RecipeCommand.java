@@ -1,6 +1,8 @@
 package tmelo.recipeproject.commands;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.validation.constraints.Max;
@@ -49,7 +51,7 @@ public class RecipeCommand {
 	private Byte[] image;
 	private Difficulty difficulty;
 	private NotesCommand notesCommand;
-	private Set<CategoryCommand> categoriesCommand = new HashSet<>();
-	private Set<IngredientCommand> ingredientsCommand = new HashSet<>();
+	private List<CategoryCommand> categoriesCommand = new ArrayList<>();
+	private List<IngredientCommand> ingredientsCommand = new ArrayList<>();
 
 }
