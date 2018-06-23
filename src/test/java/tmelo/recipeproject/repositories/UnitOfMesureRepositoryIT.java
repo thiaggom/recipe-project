@@ -24,7 +24,7 @@ public class UnitOfMesureRepositoryIT {
 	
 	@Autowired
 	RecipeRepository recipeRepo;
-
+ 
 	@Autowired
 	CategoryRepository catRepo;
 	
