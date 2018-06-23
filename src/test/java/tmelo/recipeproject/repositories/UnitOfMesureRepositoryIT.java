@@ -15,8 +15,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import tmelo.recipeproject.bootstrap.MongoDataPush;
 import tmelo.recipeproject.domain.UnitOfMeasure;
 
-@RunWith(SpringRunner.class)
-@DataMongoTest
+//@RunWith(SpringRunner.class)
+//@DataMongoTest
 public class UnitOfMesureRepositoryIT {
 
 	@Autowired
@@ -37,7 +37,7 @@ public class UnitOfMesureRepositoryIT {
 		dataPush.onApplicationEvent(null);
 	}
 	
-	@Test
+//	@Test
 	public void findByDescription() throws Exception {
 		Optional<UnitOfMeasure> optUom = uomRepo.findByDescription("Ounce");
 		assertEquals(true, optUom.isPresent());
