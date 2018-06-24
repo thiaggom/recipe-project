@@ -27,7 +27,7 @@ public class UnitOfMesureRepositoryIT {
  
 	@Autowired
 	CategoryRepository catRepo;
-	
+	 
 	
 	@Before
 	public void loadDataTest() {

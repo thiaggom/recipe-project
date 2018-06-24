@@ -43,6 +43,7 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+<!-- 		Dependency to embedded mongo... --> 
 		<dependency>
 			<groupId>de.flapdoodle.embed</groupId>
 			<artifactId>de.flapdoodle.embed.mongo</artifactId>
@@ -52,6 +53,7 @@
 			<artifactId>embedmongo-spring</artifactId>
 			<version>1.3.1</version>
 		</dependency>
+<!-- 		End fo dependency to embedded mongo...  --> 
 		<dependency>
 		    <groupId>org.webjars</groupId>
 		    <artifactId>bootstrap</artifactId>
