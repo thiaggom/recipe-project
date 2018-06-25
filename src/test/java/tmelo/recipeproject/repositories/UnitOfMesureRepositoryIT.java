@@ -5,18 +5,16 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Optional;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import tmelo.recipeproject.bootstrap.MongoDataPush;
 import tmelo.recipeproject.domain.UnitOfMeasure;
 
 @RunWith(SpringRunner.class)
-@DataMongoTest
+@SpringBootTest
 public class UnitOfMesureRepositoryIT {
 
 	@Autowired
@@ -29,16 +27,8 @@ public class UnitOfMesureRepositoryIT {
 	CategoryRepository catRepo;
 	 
 	
-	@Before
-	public void loadDataTest() {
-		
-		MongoDataPush dataPush = new MongoDataPush(recipeRepo, catRepo, uomRepo);
-		
-		dataPush.onApplicationEvent(null);
-	}
-	
 	@Test
-	public void findByDescription() throws Exception {
+	public final void findByDescription() throws Exception {
 		Optional<UnitOfMeasure> optUom = uomRepo.findByDescription("Ounce");
 		assertEquals(true, optUom.isPresent());
 		assertThat(optUom.get()).hasFieldOrPropertyWithValue("description", "Ounce");
