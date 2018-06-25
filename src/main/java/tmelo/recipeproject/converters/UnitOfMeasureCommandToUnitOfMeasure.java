@@ -4,17 +4,15 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
-import lombok.Synchronized;
 import tmelo.recipeproject.commands.UnitOfMeasureCommand;
 import tmelo.recipeproject.domain.UnitOfMeasure;
 
 @Component
 public class UnitOfMeasureCommandToUnitOfMeasure implements Converter<UnitOfMeasureCommand, UnitOfMeasure>{
 
-	@Synchronized
 	@Nullable
 	@Override
-	public UnitOfMeasure convert(UnitOfMeasureCommand source) {
+	public final UnitOfMeasure convert(final UnitOfMeasureCommand source) {
 
 		if (source == null) {
 			return null;

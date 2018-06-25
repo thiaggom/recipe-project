@@ -42,13 +42,13 @@ public class Recipe {
 	
 	private Byte[] image;
 
-	public void setNotes(Notes notes) {
+	public final void setNotes(final Notes notes) {
 		if (notes != null) {
 			this.notes = notes;
 		}
 	}
 
-	public void addIngredient(Ingredient ingredient) {
+	public final void addIngredient(final Ingredient ingredient) {
 		this.ingredients.add(ingredient);
 	}
 	

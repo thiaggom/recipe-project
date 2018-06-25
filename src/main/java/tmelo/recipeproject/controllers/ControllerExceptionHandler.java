@@ -16,7 +16,7 @@ public class ControllerExceptionHandler {
 
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	@ExceptionHandler(NotFoundException.class)
-	public ModelAndView handleNotFound(Exception exception) {
+	public ModelAndView handleNotFound(final Exception exception) {
 		log.error("Handling not found exception");
 		log.error(exception.getMessage());
 		ModelAndView modelAndView = new ModelAndView();
@@ -41,7 +41,7 @@ public class ControllerExceptionHandler {
 	
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(NumberFormatException.class)
-	public ModelAndView handleNumberFormatExceptionRequest(Exception e) {
+	public ModelAndView handleNumberFormatExceptionRequest(final Exception e) {
 		log.error(e.getMessage());
 		
 		ModelAndView modView = new ModelAndView();

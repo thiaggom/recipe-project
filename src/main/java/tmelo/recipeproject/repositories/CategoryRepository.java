@@ -8,6 +8,6 @@ import tmelo.recipeproject.domain.Category;
 
 public interface CategoryRepository extends CrudRepository<Category, String>{
 
-	public Optional<Category> findByCategoryName(String categoryName);
+	Optional<Category> findByCategoryName(final String categoryName);
 	
 }

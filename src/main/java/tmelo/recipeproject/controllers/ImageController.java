@@ -27,20 +27,20 @@ public class ImageController {
 	private final RecipeService recipeService;
 	private final ImageService imageService;
 	
-    public ImageController(RecipeService recipeService, ImageService imageService) {
+    public ImageController(final RecipeService recipeService, final ImageService imageService) {
 		this.recipeService = recipeService;
 		this.imageService = imageService;
 	}
 
 	@GetMapping("recipe/{id}/image")
-    public String showUploadForm(@PathVariable String id, Model model){
+    public String showUploadForm(@PathVariable final String id, final Model model){
         model.addAttribute("recipe", recipeService.findCommandById(id));
 
         return "recipe/imageuploadform";
     }	
 	
     @PostMapping("recipe/{recipeId}/image")
-    public String uploadRecipeImage(@PathVariable String recipeId, @RequestParam("imagefile") MultipartFile file ) {
+    public String uploadRecipeImage(@PathVariable final String recipeId, @RequestParam("imagefile") final MultipartFile file ) {
     	log.debug("## Upload image recipe id: "+recipeId+" size: "+file.getSize());
     	
     	imageService.saveImageFile(recipeId, file);
@@ -49,7 +49,7 @@ public class ImageController {
     }
     
     @GetMapping("recipe/{id}/recipeimage")
-    public void renderImageFromDB(@PathVariable String id, HttpServletResponse response) throws IOException {
+    public void renderImageFromDB(@PathVariable final String id, final HttpServletResponse response) throws IOException {
         RecipeCommand recipeCommand = recipeService.findCommandById(id);
 
         if (recipeCommand.getImage() != null) {

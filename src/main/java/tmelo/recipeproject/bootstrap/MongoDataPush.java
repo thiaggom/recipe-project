@@ -29,15 +29,15 @@ public class MongoDataPush implements ApplicationListener<ContextRefreshedEvent>
 	private CategoryRepository categoryRepo;
 	private UnitOfMeasureRepository unitMesureRepo;
 
-	public MongoDataPush(RecipeRepository recipeRepo, CategoryRepository categoryRepo,
-			UnitOfMeasureRepository unitMesureRepo) {
+	public MongoDataPush(final RecipeRepository recipeRepo, final CategoryRepository categoryRepo,
+			final UnitOfMeasureRepository unitMesureRepo) {
 		this.recipeRepo = recipeRepo;
 		this.categoryRepo = categoryRepo;
 		this.unitMesureRepo = unitMesureRepo;
 	}
 
 	@Override
-	public void onApplicationEvent(ContextRefreshedEvent event) {
+	public void onApplicationEvent(final ContextRefreshedEvent event) {
 		
 		// populating database...
 		log.debug("## Pushing data to H2 database...");

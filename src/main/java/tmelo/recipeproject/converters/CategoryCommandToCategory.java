@@ -4,17 +4,15 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
-import lombok.Synchronized;
 import tmelo.recipeproject.commands.CategoryCommand;
 import tmelo.recipeproject.domain.Category;
 
 @Component
 public class CategoryCommandToCategory implements Converter<CategoryCommand, Category>{
 
-	@Synchronized
 	@Nullable
 	@Override
-	public Category convert(CategoryCommand source) {
+	public final Category convert(final CategoryCommand source) {
 
 		if (source == null) {
 			return null;

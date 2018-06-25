@@ -11,11 +11,11 @@ public class InvalidParametersException extends RuntimeException {
 		super();
 	}
 
-	public InvalidParametersException(String message, Throwable cause) {
+	public InvalidParametersException(final String message, final Throwable cause) {
 		super(message, cause);
 	}
 
-	public InvalidParametersException(String message) {
+	public InvalidParametersException(final String message) {
 		super(message);
 	}
 

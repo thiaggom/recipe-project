@@ -19,13 +19,13 @@ public class MySQLDataPush implements ApplicationListener<ContextRefreshedEvent>
 	private final CategoryRepository categoryRepo;
 	private final UnitOfMeasureRepository unitOfMeasureRepo;
 	
-	public MySQLDataPush(CategoryRepository categoryRepo, UnitOfMeasureRepository unitOfMeasureRepo) {
+	public MySQLDataPush(final CategoryRepository categoryRepo, final UnitOfMeasureRepository unitOfMeasureRepo) {
 		this.categoryRepo = categoryRepo;
 		this.unitOfMeasureRepo = unitOfMeasureRepo;
 	}
 
 	@Override
-	public void onApplicationEvent(ContextRefreshedEvent event) {
+	public void onApplicationEvent(final ContextRefreshedEvent event) {
 		
 		// verifing if there is not category in the database
 		if (categoryRepo.count() == 0L) {

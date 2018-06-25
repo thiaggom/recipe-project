@@ -7,17 +7,15 @@ import tmelo.recipeproject.domain.Recipe;
 
 public interface RecipeService {
 
-	public Set<Recipe> getAllRecipes();
+	Set<Recipe> getAllRecipes();
 	
-	public void saveRecipe(Recipe recipe);
+	Recipe getRecipeById(final String id);
 
-	public Recipe getRecipeById(String id);
-
-	public void deleteRecipeById(String id);
+	void deleteRecipeById(final String id);
 	
-	public RecipeCommand saveRecipeCommand(RecipeCommand recipeCommand);
+	RecipeCommand saveRecipeCommand(final RecipeCommand recipeCommand);
 
-	public RecipeCommand findCommandById(String id);
+	RecipeCommand findCommandById(final String id);
 	
 	
 }

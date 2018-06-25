@@ -4,7 +4,6 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
-import lombok.Synchronized;
 import tmelo.recipeproject.commands.CategoryCommand;
 import tmelo.recipeproject.commands.IngredientCommand;
 import tmelo.recipeproject.commands.RecipeCommand;
@@ -17,18 +16,17 @@ public class RecipeCommandToRecipe implements Converter<RecipeCommand, Recipe>{
 	private final CategoryCommandToCategory categoryConverter;
 	private final IngredientCommandToIngredient ingredientConverter;
 	
-	public RecipeCommandToRecipe(NotesCommandToNotes notesConverter, CategoryCommandToCategory categoryConverter,
-			IngredientCommandToIngredient ingredientConverter) {
-		super();
+	public RecipeCommandToRecipe(final NotesCommandToNotes notesConverter, final CategoryCommandToCategory categoryConverter,
+			final IngredientCommandToIngredient ingredientConverter) {
+
 		this.notesConverter = notesConverter;
 		this.categoryConverter = categoryConverter;
 		this.ingredientConverter = ingredientConverter;
 	}
 
-	@Synchronized
 	@Nullable
 	@Override
-	public Recipe convert(RecipeCommand source) {
+	public final Recipe convert(final RecipeCommand source) {
 
 		if (source == null) {
 			return null;

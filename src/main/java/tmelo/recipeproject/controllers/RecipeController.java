@@ -20,41 +20,42 @@ import tmelo.recipeproject.services.RecipeService;
 public class RecipeController {
 
 	private static final String RECIPE_RECIPEFORM_URL = "recipe/recipeform";
-	
+
 	private RecipeService recipeService;
-	
-	public RecipeController(RecipeService recipeService) {
+
+	public RecipeController(final RecipeService recipeService) {
 		this.recipeService = recipeService;
 	}
-	
+
 	@GetMapping("/recipe/{id}/show")
-	public String getRecipeById(@PathVariable String id, Model model) {
-		
-		Recipe rec = recipeService.getRecipeById(id); 
-		
-		model.addAttribute("recipe",rec);
-		
-		log.debug("recipe object sent to the view --> "+rec.toString());
-		
+	public String getRecipeById(@PathVariable final String id, final Model model) {
+
+		Recipe rec = recipeService.getRecipeById(id);
+
+		model.addAttribute("recipe", rec);
+
+		log.debug("recipe object sent to the view --> " + rec.toString());
+
 		return "recipe/show";
 	}
-	
+
 	@GetMapping("/recipe/new")
-	public String newRecipe(Model model) {
+	public String newRecipe(final Model model) {
 		model.addAttribute("recipe", new RecipeCommand());
-		
+
 		return RECIPE_RECIPEFORM_URL;
 	}
-	
+
 	@GetMapping("/recipe/{id}/update")
-	public String updateRecipe(@PathVariable String id, Model model) {
+	public String updateRecipe(@PathVariable final String id, final Model model) {
 		model.addAttribute("recipe", recipeService.findCommandById(id));
 		return RECIPE_RECIPEFORM_URL;
 	}
-	
+
 	@PostMapping("recipe")
-	public String saveOrUpdate(@Valid @ModelAttribute("recipe") RecipeCommand command, BindingResult bindingResult) {
-		
+	public String saveOrUpdate(@Valid @ModelAttribute("recipe") final RecipeCommand command,
+			final BindingResult bindingResult) {
+
 		if (bindingResult.hasErrors()) {
 			log.debug("Errors found when attempting to save a recipe: ");
 			bindingResult.getAllErrors().forEach(objectError -> {
@@ -62,18 +63,18 @@ public class RecipeController {
 			});
 			return RECIPE_RECIPEFORM_URL;
 		}
-		
+
 		RecipeCommand savedCommand = recipeService.saveRecipeCommand(command);
-		
-		return "redirect:/recipe/"+savedCommand.getId()+"/show";
+
+		return "redirect:/recipe/" + savedCommand.getId() + "/show";
 	}
-	
+
 	@GetMapping("/recipe/{id}/delete")
-	public String deleteRecipe(@PathVariable String id, Model model) {
-		log.debug("## Deleting recipe: "+id);
-		
+	public String deleteRecipe(@PathVariable final String id, final Model model) {
+		log.debug("## Deleting recipe: " + id);
+
 		recipeService.deleteRecipeById(id);
-		
+
 		return "redirect:/";
 	}
 

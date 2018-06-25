@@ -6,6 +6,6 @@ import tmelo.recipeproject.commands.UnitOfMeasureCommand;
 
 public interface UnitOfMeasureService {
 
-	public Set<UnitOfMeasureCommand> listAllUoms();
+	Set<UnitOfMeasureCommand> listAllUoms();
 	
 }

@@ -13,23 +13,20 @@ import tmelo.recipeproject.repositories.UnitOfMeasureRepository;
 @Service
 public class UnitOfMeasureServiceImpl implements UnitOfMeasureService {
 
-    private final UnitOfMeasureRepository unitOfMeasureRepository;
-    private final UnitOfMeasureToUnitOfMeasureCommand unitOfMeasureToUnitOfMeasureCommand;
+	private final UnitOfMeasureRepository unitOfMeasureRepository;
+	private final UnitOfMeasureToUnitOfMeasureCommand unitOfMeasureToUnitOfMeasureCommand;
 
-    public UnitOfMeasureServiceImpl(UnitOfMeasureRepository unitOfMeasureRepository, UnitOfMeasureToUnitOfMeasureCommand unitOfMeasureToUnitOfMeasureCommand) {
-        this.unitOfMeasureRepository = unitOfMeasureRepository;
-        this.unitOfMeasureToUnitOfMeasureCommand = unitOfMeasureToUnitOfMeasureCommand;
-    }
+	public UnitOfMeasureServiceImpl(final UnitOfMeasureRepository unitOfMeasureRepository,
+			final UnitOfMeasureToUnitOfMeasureCommand unitOfMeasureToUnitOfMeasureCommand) {
+		this.unitOfMeasureRepository = unitOfMeasureRepository;
+		this.unitOfMeasureToUnitOfMeasureCommand = unitOfMeasureToUnitOfMeasureCommand;
+	}
 
-    @Override
-    public Set<UnitOfMeasureCommand> listAllUoms() {
+	@Override
+	public final Set<UnitOfMeasureCommand> listAllUoms() {
 
-        return StreamSupport.stream(unitOfMeasureRepository.findAll()
-                .spliterator(), false)
-                .map(unitOfMeasureToUnitOfMeasureCommand::convert)
-                .collect(Collectors.toSet());
-    }
-    
-    
+		return StreamSupport.stream(unitOfMeasureRepository.findAll().spliterator(), false)
+				.map(unitOfMeasureToUnitOfMeasureCommand::convert).collect(Collectors.toSet());
+	}
 
 }

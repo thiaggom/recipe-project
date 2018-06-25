@@ -4,7 +4,6 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
-import lombok.Synchronized;
 import tmelo.recipeproject.commands.IngredientCommand;
 import tmelo.recipeproject.domain.Ingredient;
 
@@ -13,15 +12,14 @@ public class IngredientToIngredientCommand implements Converter<Ingredient, Ingr
 
 	private final UnitOfMeasureToUnitOfMeasureCommand uomConverter;
 	
-	public IngredientToIngredientCommand(UnitOfMeasureToUnitOfMeasureCommand uomConverter) {
+	public IngredientToIngredientCommand(final UnitOfMeasureToUnitOfMeasureCommand uomConverter) {
 		this.uomConverter = uomConverter;
 	}
 
 
-	@Synchronized
 	@Nullable
 	@Override
-	public IngredientCommand convert(Ingredient source) {
+	public final IngredientCommand convert(final Ingredient source) {
 		if (source == null) {
 			return null;
 		}

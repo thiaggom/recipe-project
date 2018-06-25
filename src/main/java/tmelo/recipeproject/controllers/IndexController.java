@@ -12,12 +12,12 @@ public class IndexController {
 
 	private final RecipeService recipesService;
 	
-	public IndexController(RecipeService recipesService) {
+	public IndexController(final RecipeService recipesService) {
 		this.recipesService = recipesService;
 	}
 
 	@RequestMapping({"","/","/index","/home"})
-	public String getIndexPage(Model model) {
+	public String getIndexPage(final Model model) {
 
 		model.addAttribute("recipes", recipesService.getAllRecipes());
 		

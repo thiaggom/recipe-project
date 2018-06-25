@@ -4,17 +4,15 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
-import lombok.Synchronized;
 import tmelo.recipeproject.commands.NotesCommand;
 import tmelo.recipeproject.domain.Notes;
 
 @Component
 public class NotesToNotesCommand implements Converter<Notes, NotesCommand>{
 
-	@Synchronized
 	@Nullable
 	@Override
-	public NotesCommand convert(Notes source) {
+	public final NotesCommand convert(final Notes source) {
 
 		if (source == null) {
 			return null;

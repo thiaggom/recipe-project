@@ -5,7 +5,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
 import tmelo.recipeproject.commands.RecipeCommand;
@@ -23,15 +22,15 @@ public class RecipeServicesImpl implements RecipeService{
 	private final RecipeToRecipeCommand recipeToRecipeCommand;
 	private final RecipeCommandToRecipe recipeCommandToRecipe;
 	
-	public RecipeServicesImpl(RecipeRepository recipeRepository, RecipeToRecipeCommand recipeToRecipeCommand,
-			RecipeCommandToRecipe recipeCommandToRecipe) {
+	public RecipeServicesImpl(final RecipeRepository recipeRepository, final RecipeToRecipeCommand recipeToRecipeCommand,
+			final RecipeCommandToRecipe recipeCommandToRecipe) {
 		this.recipeRepository = recipeRepository;
 		this.recipeToRecipeCommand = recipeToRecipeCommand;
 		this.recipeCommandToRecipe = recipeCommandToRecipe;
 	}
 
 	@Override
-	public Set<Recipe> getAllRecipes() {
+	public final Set<Recipe> getAllRecipes() {
 		HashSet<Recipe> recipes = new HashSet<>();
 		recipeRepository.findAll().iterator().forEachRemaining(recipes::add);
 		
@@ -40,12 +39,7 @@ public class RecipeServicesImpl implements RecipeService{
 	}
 
 	@Override
-	public void saveRecipe(Recipe recipe) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public Recipe getRecipeById(String id) {
+	public final Recipe getRecipeById(final String id) {
 		
 		Optional<Recipe> optRecipe = recipeRepository.findById(id);
 		
@@ -57,8 +51,7 @@ public class RecipeServicesImpl implements RecipeService{
 	}
 
 	@Override
-	@Transactional
-	public RecipeCommand saveRecipeCommand(RecipeCommand recipeCommand) {
+	public final RecipeCommand saveRecipeCommand(final RecipeCommand recipeCommand) {
 		
 		Recipe detachedRecipe = recipeCommandToRecipe.convert(recipeCommand);
 		
@@ -74,14 +67,13 @@ public class RecipeServicesImpl implements RecipeService{
 	}
 
 	@Override
-	@Transactional
-	public RecipeCommand findCommandById(String id) {
+	public final RecipeCommand findCommandById(final String id) {
 		log.debug("## findCommandById: "+id);
 		return recipeToRecipeCommand.convert(getRecipeById(id));
 	}
 
 	@Override
-	public void deleteRecipeById(String id) {
+	public final void deleteRecipeById(final String id) {
 		recipeRepository.deleteById(id);
 	}
 

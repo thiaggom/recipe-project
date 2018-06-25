@@ -8,6 +8,6 @@ import tmelo.recipeproject.domain.UnitOfMeasure;
 
 public interface UnitOfMeasureRepository extends CrudRepository<UnitOfMeasure, String>{
 
-	public Optional<UnitOfMeasure> findByDescription(String description);
+	Optional<UnitOfMeasure> findByDescription(final String description);
 	
 }

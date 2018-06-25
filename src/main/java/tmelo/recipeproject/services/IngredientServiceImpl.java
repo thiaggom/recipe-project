@@ -3,7 +3,6 @@ package tmelo.recipeproject.services;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
 import tmelo.recipeproject.commands.IngredientCommand;
@@ -23,9 +22,9 @@ public class IngredientServiceImpl implements IngredientService {
 	private final RecipeRepository recipeRepository;
 	private final UnitOfMeasureRepository unitOfMeasureRepository;
 
-	public IngredientServiceImpl(IngredientToIngredientCommand ingredientToIngredientCommand,
-			IngredientCommandToIngredient ingredientCommandToIngredient, RecipeRepository recipeRepository,
-			UnitOfMeasureRepository unitOfMeasureRepository) {
+	public IngredientServiceImpl(final IngredientToIngredientCommand ingredientToIngredientCommand,
+			final IngredientCommandToIngredient ingredientCommandToIngredient, final RecipeRepository recipeRepository,
+			final UnitOfMeasureRepository unitOfMeasureRepository) {
 
 		this.ingredientToIngredientCommand = ingredientToIngredientCommand;
 		this.ingredientCommandToIngredient = ingredientCommandToIngredient;
@@ -34,7 +33,7 @@ public class IngredientServiceImpl implements IngredientService {
 	}
 
 	@Override
-	public IngredientCommand findByRecipeIdAndIngredientId(String recipeId, String ingredientId) {
+	public final IngredientCommand findByRecipeIdAndIngredientId(final String recipeId, final String ingredientId) {
 
 		Optional<Recipe> recipeOptional = recipeRepository.findById(recipeId);
 
@@ -60,8 +59,7 @@ public class IngredientServiceImpl implements IngredientService {
 	}
 
     @Override
-    @Transactional
-    public IngredientCommand saveIngredientCommand(IngredientCommand command) {
+    public final IngredientCommand saveIngredientCommand(final IngredientCommand command) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(command.getRecipeId());
 
         if(!recipeOptional.isPresent()){
@@ -115,7 +113,7 @@ public class IngredientServiceImpl implements IngredientService {
 	}
     
     @Override
-    public void deleteById(String recipeId, String idToDelete) {
+    public final void deleteById(final String recipeId, final String idToDelete) {
 
         log.debug("Deleting ingredient: " + recipeId + ":" + idToDelete);
 
